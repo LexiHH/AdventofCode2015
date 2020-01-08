@@ -1,0 +1,107 @@
+using System.IO;
+using System;
+using System.Collections;
+					
+public class Program
+{
+	public static void Main()
+	{
+		string input = "^>v<";
+        int x = 0;
+        int y = 0;
+		int robox = 0;
+		int roboy = 0;
+        int houses =1;
+		int robohouses = 0;
+        ArrayList coordinates = new ArrayList();
+        coordinates.Add("0,0");
+        for(int i =0; i<input.Length;i++)
+        {
+			if(i%2==0)
+			{
+            switch (input.Substring(i,1))
+            {
+                case "v":
+                    y--;
+                    string down = x.ToString()+","+y.ToString();
+                    if(!coordinates.Contains(down))
+                    {
+                        coordinates.Add(down);
+                        houses++;
+                    }
+                break;
+                case "^":
+                    y++;
+                    string up = x.ToString()+","+y.ToString();
+                    if(!coordinates.Contains(up))
+                    {
+                        coordinates.Add(up);
+                        houses++;
+                    }
+                break;
+                case ">":
+                    x++;
+                    string right = x.ToString()+","+y.ToString();;
+                    if(!coordinates.Contains(right))
+                    {
+                        coordinates.Add(right);
+                        houses++;
+                    }
+                break;
+                case "<":
+                    x--;
+                    string left = x.ToString()+","+y.ToString();
+                    if(!coordinates.Contains(left))
+                    {
+                        coordinates.Add(left);
+                        houses++;
+                    }
+                break;
+            }
+			}
+			else
+			{
+				switch (input.Substring(i,1))
+            {
+                case "v":
+                    roboy--;
+                    string robodown = robox.ToString()+","+roboy.ToString();
+                    if(!coordinates.Contains(robodown))
+                    {
+                        coordinates.Add(robodown);
+                        robohouses++;
+                    }
+                break;
+                case "^":
+                    roboy++;
+                    string roboup = robox.ToString()+","+roboy.ToString();
+                    if(!coordinates.Contains(roboup))
+                    {
+                        coordinates.Add(roboup);
+                        robohouses++;
+                    }
+                break;
+                case ">":
+                    robox++;
+                    string roboright = robox.ToString()+","+roboy.ToString();;
+                    if(!coordinates.Contains(roboright))
+                    {
+                        coordinates.Add(roboright);
+                        robohouses++;
+                    }
+                break;
+                case "<":
+                    robox--;
+                    string roboleft = robox.ToString()+","+roboy.ToString();
+                    if(!coordinates.Contains(roboleft))
+                    {
+                        coordinates.Add(roboleft);
+                        robohouses++;
+                    }
+                break;
+            }
+			}
+        }
+        Console.WriteLine(houses+robohouses);
+    }
+}
